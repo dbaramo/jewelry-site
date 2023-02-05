@@ -16,7 +16,7 @@
   @include media('<phone') {
     display: block;
     margin: auto;
-    padding: 31.5rem 0;
+    padding: 15rem 0 31.5rem;
     width: 66.1rem;
   }
 }
@@ -131,6 +131,8 @@
 }
 
 .detail__button {
+  @extend %description-14;
+
   align-items: center;
   bottom: 5rem;
   display: flex;
@@ -143,7 +145,6 @@
   z-index: 3;
   @include media('<phone') {
     bottom: 12rem;
-    font-size: 3rem;
     height: 13rem;
     width: 26.8rem;
   }
