@@ -17,7 +17,7 @@ class App {
 
   createPreloader () {
     this.preloader = new Preloader()
-    this.preloader.once('completed', this.onPreloaded)
+    this.preloader.once('completed', this.onPreloaded.bind(this))
   }
 
   createContent(){
@@ -35,11 +35,12 @@ class App {
 
     this.page = this.pages[this.template]
     this.page.create()
-    this.page.show()
   }
 
   onPreloaded () {
-    console.log('Preloaded')
+    this.preloader.destroy()
+
+    this.page.show()
   }
 
   async onChange (url) {
