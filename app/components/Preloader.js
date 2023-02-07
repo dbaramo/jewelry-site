@@ -28,7 +28,6 @@ export default class Preloader extends Component {
 
     this.length = 0
 
-    console.log(this.element, this.elements)
     this.createLoader()
   }
 
@@ -45,7 +44,7 @@ export default class Preloader extends Component {
     const percent = this.length / this.elements.images.length
 
     this.elements.numberText.innerHTML = `${Math.round(percent * 100)}%`
-    console.log(percent === 1)
+
     if(percent === 1){
       this.onLoaded()
     }
