@@ -45,7 +45,5 @@ export default class Label extends Animation {
 
   onResize () {
     this.elementsLines = calculate(this.elementLinesSpans)
-
-    console.log(this.elementsLines)
   }
 }
