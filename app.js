@@ -10,6 +10,7 @@ const app = express()
 const path = require('path')
 const port = 3000
 
+
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 const Prismic = require('@prismicio/client')
 const PrismicDOM = require('prismic-dom')
+const UAParser = require('ua-parser-js')
 const { response } = require('express')
 
 const initApi = req => {
@@ -45,10 +47,11 @@ const handleLinkResolver = doc => {
 }
 
 app.use((req, res, next) => {
-  // res.locals.ctx = {
-  //   endpoint: process.env.PRISMIC_ENDPOINT,
-  //   linkResolver: handleLinkResolver
-  // }
+  const ua = UAParser(req.headers['user-agent'])
+
+  res.locals.isDesktop = ua.device.type === undefined
+  res.locals.isPhone = ua.device.type === 'mobile'
+  res.locals.isTablet = ua.device.type === 'tablet'
 
   res.locals.Link = handleLinkResolver
 
